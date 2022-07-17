@@ -21,6 +21,9 @@
                   {{allergy}}
                 </mat-radio-button>
               </mat-radio-group>
+              <mat-error *ngFor="let validation of validation_messages.allergyValidation">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('allergiesSelection').hasError(validation.type) && (userDetailsForm.get('allergiesSelection').dirty || userDetailsForm.get('allergiesSelection').touched)">{{validation.message}}</mat-error>
+              </mat-error>
               <br/>
         
         <!-- Gender -->

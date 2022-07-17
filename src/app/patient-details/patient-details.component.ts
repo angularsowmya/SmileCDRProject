@@ -51,6 +51,7 @@ export class PatientDetailsComponent implements OnInit {
     genderValidation: [{ type: 'required', message: 'Please select your Gender' }],
     maritalstatusValidation: [{ type: 'required', message: 'Please select your Marital Status' }],
     birthDayValidation: [{ type: 'required', message: 'Please Provide your Birthday' }],
+    allergyValidation: [{ type: 'required', message: 'Please Provide your Birthday' }],
   };
 
 
