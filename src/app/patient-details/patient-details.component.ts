@@ -27,7 +27,7 @@ export class PatientDetailsComponent implements OnInit {
   myPatient: Patient;
   myquestionnaireModel: QuestionnaireModel;
   genderSelection: string;
-  allergiesSelection: string;
+  //allergiesSelection: string;
   //selectedAllergy: string;
  
 
@@ -36,6 +36,8 @@ export class PatientDetailsComponent implements OnInit {
   genders = ['Male', 'Female', 'Other'];
   martialStatusOptions = ['Married', 'Single', 'Divorced'];
   allergyOptions = ['True','False'];
+  smokeOptions = ['True','False'];
+  alchoholOptions = ['True','False'];
 
 
   validation_messages = {
@@ -75,8 +77,11 @@ export class PatientDetailsComponent implements OnInit {
       birthCountry: ['', Validators.required],
       birthDay: ['', Validators.required],
       genderSelection:  ['', Validators.required],
-      maritalstatus: ['', Validators.required],   
-      allergiesSelection:  ['', Validators.required],    
+      maritalstatus: ['', Validators.required],    
+      allergiesSelection: new FormGroup({
+        True: new FormControl(true),
+        False: new FormControl(false),
+      }) 
     });
   }
 

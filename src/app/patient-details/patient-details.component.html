@@ -5,7 +5,7 @@
       <div class="user-details-container">
         <img class="user-image" src="https://randomuser.me/api/portraits/lego/3.jpg"/>
         <span class="user-title">{{userDetailsForm.get('fullName').value}}</span>
-        <p class="user-bio">{{userDetailsForm.get('bio').value}}</p>
+        <!-- <p class="user-bio">{{userDetailsForm.get('bio').value}}</p> -->
       </div>
     </div>
 
@@ -13,6 +13,7 @@
 
       <h2 class="section-title">Patient details</h2>
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+
         
         <!-- Gender -->
          <mat-form-field class="full-width">
@@ -56,15 +57,32 @@
           </mat-error>
         </mat-form-field> 
 
-
-        <!-- <mat-form-field class="full-width">
-        <mat-radio-group placeholder="Do you have allergies?" ngDefaultControl  formControlName ="allergiesSelection" required>
+        <!-- Smoke -->
+        <mat-label>Do you have allergies?</mat-label>
+        <mat-radio-group placeholder="Do you have allergies?" formGroupName="allergiesSelection">
           <mat-radio-button class="example-radio-button" *ngFor="let allergy of allergyOptions" [value]="allergy">
-            {{allergy}}
-          </mat-radio-button>
-        </mat-radio-group>
-      </mat-form-field> -->
+          {{allergy}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <br/>
+        <!-- Smoke -->
+        <mat-label> Do you smoke?</mat-label>
+        <mat-radio-group placeholder="Do you smoke?" formGroupName="allergiesSelection">
+          <mat-radio-button class="example-radio-button" *ngFor="let smoke of smokeOptions" [value]="smoke">
+          {{smoke}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <br/>
+        <!-- Alchohol -->
+        <mat-label>Do you drink alchohol?</mat-label>
+        <mat-radio-group placeholder="Do you drink alchohol?" formGroupName="allergiesSelection">
+          <mat-radio-button class="example-radio-button" *ngFor="let alchohol of alchoholOptions" [value]="alchohol">
+          {{alchohol}}
+         </mat-radio-button>
+      </mat-radio-group>
 
+
+<br/>
         <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!userDetailsForm.valid">
           Submit
         </button>
