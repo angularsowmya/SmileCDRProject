@@ -4,7 +4,7 @@
     <div class="col-2">
       <div class="user-details-container">
         <img class="user-image" src="https://randomuser.me/api/portraits/lego/3.jpg"/>
-        <span class="user-title">{{userDetailsForm.get('fullname').value}}</span>
+        <span class="user-title">{{userDetailsForm.get('fullName').value}}</span>
         <p class="user-bio">{{userDetailsForm.get('bio').value}}</p>
       </div>
     </div>
@@ -14,34 +14,58 @@
       <h2 class="section-title">Patient details</h2>
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
         
-
-        <mat-form-field class="full-width">
-          <mat-select placeholder="What is your gender?">
+        <!-- Gender -->
+         <mat-form-field class="full-width">
+          <mat-select placeholder="What is your gender?" formControlName="genderSelection" required>
             <mat-option *ngFor="let gender of genders" [value]="gender">
               {{ gender }}
             </mat-option>
           </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.gender">
-            <mat-error class="error-message" *ngIf="userDetailsForm.get('gender').hasError(validation.type) && (userDetailsForm.get('gender').dirty || userDetailsForm.get('gender').touched)">{{validation.message}}</mat-error>
+          <mat-error *ngFor="let validation of validation_messages.genderValidation">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('genderSelection').hasError(validation.type) && (userDetailsForm.get('genderSelection').dirty || userDetailsForm.get('genderSelection').touched)">{{validation.message}}</mat-error>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> 
 
+         <!-- Date of Birth -->
         <mat-form-field class="full-width">
-          <input matInput [matDatepicker]="picker" placeholder="What is your date of birth?" formControlName="birthday" required>
+          <input matInput [matDatepicker]="picker" placeholder="What is your date of birth?" formControlName="birthDay" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngFor="let validation of validation_messages.birthday">
-            <mat-error class="error-message" *ngIf="userDetailsForm.get('birthday').hasError(validation.type) && (userDetailsForm.get('birthday').dirty || userDetailsForm.get('birthday').touched)">{{validation.message}}</mat-error>
+          <mat-error *ngFor="let validation of validation_messages.birthDayValidation">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('birthDay').hasError(validation.type) && (userDetailsForm.get('birthDay').dirty || userDetailsForm.get('birthDay').touched)">{{validation.message}}</mat-error>
           </mat-error>
         </mat-form-field>
+
+       <!-- Birth Country -->
+        <mat-form-field class="full-width">
+          <input matInput placeholder="What is your country of birth?" formControlName="birthCountry" required>
+          <mat-error *ngFor="let validation of validation_messages.birthCountryValidation">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('birthCountry').hasError(validation.type) && (userDetailsForm.get('birthCountry').dirty || userDetailsForm.get('birthCountry').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+         <!-- Martial Status -->
+        <mat-form-field class="full-width">
+          <mat-select placeholder="What is your marital status" formControlName="maritalstatus" required>
+            <mat-option *ngFor="let martialStatus of martialStatusOptions" [value]="martialStatus">
+              {{ martialStatus }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngFor="let validation of validation_messages.maritalstatusValidation">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('maritalstatus').hasError(validation.type) && (userDetailsForm.get('maritalstatus').dirty || userDetailsForm.get('maritalstatus').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field> 
+
+
 
 
         <mat-form-field class="full-width">
-          <input matInput placeholder="What is your country of birth?" formControlName="birthcountry" required>
-          <mat-error *ngFor="let validation of validation_messages.fullname">
-            <mat-error class="error-message" *ngIf="userDetailsForm.get('birthcountry').hasError(validation.type) && (userDetailsForm.get('firstname').dirty || userDetailsForm.get('firstname').touched)">{{validation.message}}</mat-error>
-          </mat-error>
-        </mat-form-field>
+        <mat-radio-group placeholder="What is your marital status"  formControlName ="allergiesSelection" required>
+          <mat-radio-button class="example-radio-button" *ngFor="let allergy of allergyOptions" [value]="allergy">
+            {{allergy}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-form-field>
 
         <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!userDetailsForm.valid">
           Submit
