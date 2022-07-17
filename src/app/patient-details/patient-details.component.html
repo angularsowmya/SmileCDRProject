@@ -57,15 +57,13 @@
         </mat-form-field> 
 
 
-
-
-        <mat-form-field class="full-width">
-        <mat-radio-group placeholder="What is your marital status"  formControlName ="allergiesSelection" required>
+        <!-- <mat-form-field class="full-width">
+        <mat-radio-group placeholder="Do you have allergies?" ngDefaultControl  formControlName ="allergiesSelection" required>
           <mat-radio-button class="example-radio-button" *ngFor="let allergy of allergyOptions" [value]="allergy">
             {{allergy}}
           </mat-radio-button>
         </mat-radio-group>
-      </mat-form-field>
+      </mat-form-field> -->
 
         <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!userDetailsForm.valid">
           Submit

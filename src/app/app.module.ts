@@ -11,10 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { PatientService } from './Service/patient.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     PatientDetailsComponent
   ],
   imports: [
+    MatInputModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -34,6 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCheckboxModule,
     MatSelectModule,  
     HttpClientModule,
+    MatFormFieldModule,
+    MatRadioModule,
   ],
   providers: [PatientService],
   bootstrap: [AppComponent]

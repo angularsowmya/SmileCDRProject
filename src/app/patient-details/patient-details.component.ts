@@ -6,13 +6,10 @@ import {
   FormControl,
 } from '@angular/forms';
 import { PatientService } from '../Service/patient.service';
-import { Country } from '../validators/country.model';
 import {
   ParentErrorStateMatcher,
   PasswordValidator,
 } from '../validators/password.validator';
-import { PhoneValidator } from '../validators/phone.validator';
-import { UsernameValidator } from '../validators/username.validator';
 import { Patient } from '../Models/patient';
 import { QuestionnaireModel } from '../Models/questionaireModel';
 
