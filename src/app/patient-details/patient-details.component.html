@@ -14,6 +14,14 @@
       <h2 class="section-title">Patient details</h2>
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
 
+                <!-- Allergies -->
+                <mat-label>Do you have allergies?</mat-label>
+                <mat-radio-group placeholder="Do you have allergies?" formGroupName="allergiesSelection">
+                  <mat-radio-button class="example-radio-button" *ngFor="let allergy of allergyOptions" [value]="allergy">
+                  {{allergy}}
+                </mat-radio-button>
+              </mat-radio-group>
+              <br/>
         
         <!-- Gender -->
          <mat-form-field class="full-width">
@@ -57,14 +65,7 @@
           </mat-error>
         </mat-form-field> 
 
-        <!-- Smoke -->
-        <mat-label>Do you have allergies?</mat-label>
-        <mat-radio-group placeholder="Do you have allergies?" formGroupName="allergiesSelection">
-          <mat-radio-button class="example-radio-button" *ngFor="let allergy of allergyOptions" [value]="allergy">
-          {{allergy}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <br/>
+
         <!-- Smoke -->
         <mat-label> Do you smoke?</mat-label>
         <mat-radio-group placeholder="Do you smoke?" formGroupName="allergiesSelection">
