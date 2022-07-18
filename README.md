@@ -27,6 +27,10 @@ Questionnaire Answer Details Display
 
 ![image](https://user-images.githubusercontent.com/109435216/179558884-795f2d93-c86b-416e-a7bb-9df09704be85.png)
 
+Validations
+![image](https://user-images.githubusercontent.com/109435216/179559373-e2de47e5-0cfd-4287-aa28-ce3368ed9416.png)
+
+
 
 
 
