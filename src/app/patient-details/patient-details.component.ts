@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,11 +8,13 @@ import {
 import { PatientService } from '../Service/patient.service';
 import {
   ParentErrorStateMatcher,
-  PasswordValidator,
 } from '../validators/password.validator';
 import { Patient } from '../Models/patient';
 import { QuestionnaireModel } from '../Models/questionaireModel';
 import { MatRadioChange } from '@angular/material/radio';
+import { PatientQuestionnaire } from '../Models/patient-questionnaire';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PatientDetailsDisplayComponent } from '../patient-details-display/patient-details-display.component';
 
 
 @Component({
@@ -27,12 +29,10 @@ export class PatientDetailsComponent implements OnInit {
   genderSelection: string;
   allergiesSelection: string;
   selectedAllergy: string;
- 
-
   parentErrorStateMatcher = new ParentErrorStateMatcher();
-
   genders = ['Male', 'Female', 'Other'];
   martialStatusOptions = ['Married', 'Single', 'Divorced'];
+  patientQuestionnaireDetails = new Array<PatientQuestionnaire>();;
   allergyOptions = [
     {
       id :'allergy-true',
@@ -69,8 +69,6 @@ export class PatientDetailsComponent implements OnInit {
       value : 0
     }
   ];
-
-
   validation_messages = {
     birthCountryValidation: [{ type: 'required', message: 'Birth Country is required' }],
     bioValidation: [
@@ -88,7 +86,8 @@ export class PatientDetailsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private patientService: PatientService
+    private patientService: PatientService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -170,8 +169,30 @@ export class PatientDetailsComponent implements OnInit {
   }
   }
 
+  openDialog(patientQuestionnaireDetails : PatientQuestionnaire[]): void {
+    const dialogRef = this.dialog.open(PatientDetailsDisplayComponent, {
+      width: '300px',
+      data: patientQuestionnaireDetails
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  setPatientQuestionnaire(sno : number, question : string, answer : string) : PatientQuestionnaire{
+    const patientQuestionnaire = new PatientQuestionnaire();
+    patientQuestionnaire.sno = sno;
+    patientQuestionnaire.question = question;
+    patientQuestionnaire.answer = answer;
+    return patientQuestionnaire;
+  }
 
   onSubmitUserDetails(value: FormGroup) {
     console.log(value);
+   
+
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 1, 'Do you have allergies?', 'Yes'));
+       this.openDialog(this.patientQuestionnaireDetails);
   }
 }
