@@ -171,7 +171,7 @@ export class PatientDetailsComponent implements OnInit {
 
   openDialog(patientQuestionnaireDetails : PatientQuestionnaire[]): void {
     const dialogRef = this.dialog.open(PatientDetailsDisplayComponent, {
-      width: '300px',
+      width: '800px',
       data: patientQuestionnaireDetails
     });
 
@@ -188,11 +188,17 @@ export class PatientDetailsComponent implements OnInit {
     return patientQuestionnaire;
   }
 
-  onSubmitUserDetails(value: FormGroup) {
+  onSubmitUserDetails(value: any) {
     console.log(value);
    
-
-    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 1, 'Do you have allergies?', 'Yes'));
-       this.openDialog(this.patientQuestionnaireDetails);
+    this.patientQuestionnaireDetails = [];
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 1, 'Do you have allergies?', value?.allergiesSelection?.allergyTrue?.value ? "True" : "False"));
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 2, 'What is your gender?', value?.genderSelection));
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 3, 'What is your date of birth?', value?.birthDay?.toDateString()));
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 4, 'What is your country of birth?', value?.birthCountry));
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 5, 'What is your marital status?', value?.maritalstatus));
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 6, 'Do you smoke?', value?.smokeSelection?.smokeTrue?.value ? "True" : "False"));
+    this.patientQuestionnaireDetails.push(this.setPatientQuestionnaire( 7, 'Do you drink alchohol?', value?.alchoholSelection?.alchoholTrue?.value ? "True" : "False"));
+    this.openDialog(this.patientQuestionnaireDetails);
   }
 }
