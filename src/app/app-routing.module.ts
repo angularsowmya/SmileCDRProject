@@ -4,7 +4,7 @@ import { PatientDetailsDisplayComponent } from './patient-details-display/patien
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 const routes: Routes = [
-    { path: 'patient-details', component: PatientDetailsComponent },
+    { path: '', component: PatientDetailsComponent },
     { path: 'patient-details-display', component: PatientDetailsDisplayComponent }
     
 ];
