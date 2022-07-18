@@ -14,17 +14,17 @@
       <h2 class="section-title">Patient details</h2>
       <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
 
-                <!-- Allergies -->
-                <mat-label>Do you have allergies?</mat-label>
-                <mat-radio-group placeholder="Do you have allergies?" formGroupName="allergiesSelection">
-                  <mat-radio-button class="example-radio-button" *ngFor="let allergy of allergyOptions" [value]="allergy">
-                  {{allergy}}
-                </mat-radio-button>
-              </mat-radio-group>
-              <mat-error *ngFor="let validation of validation_messages.allergyValidation">
-                <mat-error class="error-message" *ngIf="userDetailsForm.get('allergiesSelection').hasError(validation.type) && (userDetailsForm.get('allergiesSelection').dirty || userDetailsForm.get('allergiesSelection').touched)">{{validation.message}}</mat-error>
-              </mat-error>
-              <br/>
+          <!-- Allergies -->
+       <mat-label>Do you have allergies?</mat-label>
+          <mat-radio-group placeholder="Do you have allergies?" formGroupName="allergiesSelection" required>
+            <mat-radio-button id = '{{allergy.id}}' (change)="allergyChange($event)" class="example-radio-button" *ngFor="let allergy of allergyOptions" name='{{allergy.name}}' [value]="allergy.value" >
+            {{allergy.name}}
+          </mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngFor="let validation of validation_messages.allergyValidation">
+          <mat-error class="error-message" *ngIf="userDetailsForm.get('allergiesSelection').hasError(validation.type) && (userDetailsForm.get('allergiesSelection').dirty || userDetailsForm.get('allergiesSelection').touched)">{{validation.message}}</mat-error>
+        </mat-error>  
+        <br/>
         
         <!-- Gender -->
          <mat-form-field class="full-width">
@@ -63,30 +63,28 @@
               {{ martialStatus }}
             </mat-option>
           </mat-select>
-          <mat-error *ngFor="let validation of validation_messages.maritalstatusValidation">
+          <mat-error *ngFor="let validation of validation_messages.maritalstatusValidation" required>
             <mat-error class="error-message" *ngIf="userDetailsForm.get('maritalstatus').hasError(validation.type) && (userDetailsForm.get('maritalstatus').dirty || userDetailsForm.get('maritalstatus').touched)">{{validation.message}}</mat-error>
           </mat-error>
         </mat-form-field> 
 
-
         <!-- Smoke -->
         <mat-label> Do you smoke?</mat-label>
-        <mat-radio-group placeholder="Do you smoke?" formGroupName="allergiesSelection">
-          <mat-radio-button class="example-radio-button" *ngFor="let smoke of smokeOptions" [value]="smoke">
-          {{smoke}}
+        <mat-radio-group placeholder="Do you smoke?" formGroupName="smokeSelection" required>
+          <mat-radio-button id = '{{smoke.id}}' (change)="smokeChange($event)" class="example-radio-button" *ngFor="let smoke of smokeOptions" name='{{smoke.name}}' [value]="smoke.value" >
+          {{smoke.name}}
         </mat-radio-button>
       </mat-radio-group>
       <br/>
         <!-- Alchohol -->
         <mat-label>Do you drink alchohol?</mat-label>
-        <mat-radio-group placeholder="Do you drink alchohol?" formGroupName="allergiesSelection">
-          <mat-radio-button class="example-radio-button" *ngFor="let alchohol of alchoholOptions" [value]="alchohol">
-          {{alchohol}}
+        <mat-radio-group placeholder="Do you drink alchohol?" formGroupName="alchoholSelection">      
+            <mat-radio-button id = '{{alchohol.id}}' (change)="alchoholChange($event)" class="example-radio-button" *ngFor="let alchohol of alchoholOptions" name='{{alchohol.name}}' [value]="alchohol.value" >
+          {{alchohol.name}}
          </mat-radio-button>
       </mat-radio-group>
 
-
-<br/>
+        <br/>
         <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!userDetailsForm.valid">
           Submit
         </button>
